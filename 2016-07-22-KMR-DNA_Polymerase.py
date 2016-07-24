@@ -45,11 +45,11 @@ def do_round(mixture, primers, Nmut):
     return total, Ntotal, next_mixture
 
 
-Nmut = 8
+Nmut = 3
 Nrounds = 4
 
 primers = set_primers(Nmut)
-initial_mixture = np.copy(primers[1:2])
+initial_mixture = np.copy(primers)
 print primers
 print initial_mixture
 
