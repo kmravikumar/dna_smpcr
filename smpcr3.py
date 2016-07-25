@@ -27,7 +27,7 @@ except:
     pass
 
 # set precision for printing output
-np.set_printoptions(precision=2)
+np.set_printoptions(precision=1)
 
 
 def set_primers(Nmut):
@@ -79,11 +79,12 @@ def do_round(mixture, mix_prop, primers, Nmut):
     next_mixture = []
     next_mix_prop = []
     if BAR_FLAG:
-        bar = Bar('Processing', max=len(mixture))
+        bar = Bar('  Processing  ', max=len(mixture))
 
     # for each template
     for i,template in enumerate(mixture):
-        if BAR_FLAG: bar.next()
+        if BAR_FLAG: 
+            bar.next()
         # for each primer do first round PCR
         for primer in primers:
             product1 = reaction1(template,primer)
@@ -105,7 +106,8 @@ def do_round(mixture, mix_prop, primers, Nmut):
                 # calculate the ratio of number of mutations
                 total[len(product2)-1] += product2_prop
 
-    if BAR_FLAG: bar.finish()
+    if BAR_FLAG: 
+        bar.finish()
     Ntotal = np.sum(total)
     total = total/Ntotal
     # rescale proportions as probabilities
@@ -121,11 +123,11 @@ def print_output(pcr_round, ratio, mix_length, fp):
     from each PCR round
     """
     
-    #print "\n"
-    print "ROUND {} - {:5d} mutations in mixture".format(pcr_round, mix_length)
-    print "Mutation ratios (%)"
-    print ratio*100.0
-    print "\n"
+    #print("\n")
+    print("ROUND {} - {:5d} mutations in mixture".format(pcr_round, mix_length))
+    print("Mutation ratios (%)")
+    print(ratio*100.0)
+    print("\n")
 
     wdata = "{:3d} ".format(pcr_round)
     for ele in ratio:
@@ -134,7 +136,6 @@ def print_output(pcr_round, ratio, mix_length, fp):
     fp.write(wdata)
 
     return 0
-
 
 
 
@@ -172,11 +173,11 @@ def print_help():
     print help and exit
     """
 
-    print "ERROR"
-    print "USAGE: python smpcr.py Nmut Nrounds output_filename "
-    print "Nmut --  number of mutations and "
-    print "Nrounds -- number of rounds"
-    print "output_filename -- output file name [default: smpcr.out]"
+    print("ERROR")
+    print("USAGE: python smpcr.py Nmut Nrounds output_filename")
+    print("Nmut --  number of mutations and ")
+    print("Nrounds -- number of rounds")
+    print("output_filename -- output file name [default: smpcr.out]")
 
     exit(0)
     
@@ -185,7 +186,7 @@ if __name__=="__main__":
     """
     main function
     """
-    
+
     if len(argv) < 3:
         print_help()
     out_file = "smpcr.out"
