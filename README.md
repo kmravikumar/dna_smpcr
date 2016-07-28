@@ -1,6 +1,8 @@
 # smpcr
 
 Download smpcr.py. That's the only file you will need to run the PCR simualation.
+###NOTE: 
+You need python version 3 to run the script.
 
 ### USAGE:
 python smpcr.py Nmut Nrounds output_file.txt
